@@ -1,21 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
+import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Icons from 'react-native-vector-icons/FontAwesome';
+import store from './src/redux/store';
+import Booklist from './src/Booklist/Booklist';
+import {navigate} from './src/NavigationRoot';
+
+const Stack=createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+  
+         <NavigationContainer ref={navigationRef}>
+      <Provider store={store}>
+        <Stack.Navigator>
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen
+            name="Books"
+            component={Booklist}
+            options={{
+              headerLeft: null,
+              headerRight: () => (
+                <TouchableOpacity onPress={() => {
+                  navigate("Login");
+                }}>
+                  <Icons name="power-off" size={26} style={{ paddingRight: 10 }} />
+                </TouchableOpacity>
+              )
+            }}
+          />
+        </Stack.Navigator>
+      </Provider>
+    </NavigationContainer>
+  
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
