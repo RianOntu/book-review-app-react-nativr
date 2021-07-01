@@ -15,8 +15,8 @@ const mapStateToProps=state=>{
 
 const Booklist=props=>{
 const [selectedBook,setselectedBook]=useState(null);
-const handleSelectedBook = key => {
-    const book = props.books.find(book => {
+const handleSelectedBook = key=> {
+    const book =props.books && props.books.find(book => {
         return book.key === key;
     })
     setselectedBook(book);
@@ -40,8 +40,8 @@ if (selectedBook !== null) {
         data={props.books}
         renderItem={info => {
             return (
-                <ListItem bookName={info.item.name} onItemPressed={() =>handleSelectedBook(info.item.key)} 
-                    image={info.item.image} />
+                <ListItem  bookName={info.item.name} onItemPressed={() =>handleSelectedBook(info.item.key)}
+                    image={info.item.image} key={info.item.key} />
             );
         }}
     />

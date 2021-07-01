@@ -3,13 +3,13 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 const ListItem = props => {
     return (
-        <TouchableOpacity onPress={props.onItemPressed}>
+        <TouchableOpacity onPress={props.onItemPressed} style={{marginTop:10}}>
             <View style={styles.listItem} >
                 <Image source={{ uri: props.image }} style={{
                     width: 50,
                     height: 50,
                 }} />
-                <Text style={{ paddingLeft: 15 }}>
+                <Text style={{ paddingLeft: 15,alignSelf:"center" }}>
                     {props.bookName}
                 </Text>
             </View>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, TextInput, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
-import backgroundImage from 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZBG5-GCjKVcS4YCUBuAtG_URrkLjyqJTzUKstsHfoB11sgYrj';
+import backgroundImage from '../../../src/images/bg.jpg';
 import { tryAuth } from '../../redux/actionCreators';
 import { connect } from 'react-redux';
 import { useIsFocused } from '@react-navigation/native';
@@ -34,7 +34,7 @@ const Login = props => {
                 confirmPassword: "",
             }
         });
-        props.removeToken();
+      
     }, [isFocused]);
 
     const switchViews = () => {
@@ -145,6 +145,7 @@ const styles = StyleSheet.create({
         width: "85%",
         padding: 5,
         marginTop: 10,
+        textAlign:"center",
         backgroundColor: "#eee",
         borderWidth: 1,
         borderColor: "#009688",

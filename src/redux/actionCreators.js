@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
+import {navigate} from '../NavigationRoot';
 
 
 export const addReview=(id,author,review)=>dispatch=>{
@@ -8,8 +9,8 @@ export const addReview=(id,author,review)=>dispatch=>{
         author:author,
         review:review
     }
-    axios.post('https://book-review-app-e3742-default-rtdb.firebaseio.com/reviews.json',newReview).catch(err=>console.log(err))
-    dispatch(concatReview(newReview))
+    axios.post('https://book-review-app-e3742-default-rtdb.firebaseio.com/reviews.json',newReview)
+     dispatch(concatReview(newReview))
 }
 export const concatReview=review=>({
     type:actionTypes.ADD_REVIEW,
@@ -21,6 +22,7 @@ export const reviewsLoaded=(reviews)=>({
     payload:reviews
 });
 export const loadReviews=()=>dispatch=>{
+    dispatch(reviewsLoading())
     axios.get('https://book-review-app-e3742-default-rtdb.firebaseio.com/reviews.json').then(response=>response.data).then(reviews=>dispatch(reviewsLoaded(reviews)));
     }
     export const reviewsLoading=()=>({
@@ -43,7 +45,7 @@ export const tryAuth = (email, password, mode) => dispatch => {
     } else if (mode === "login") {
         url = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + API_KEY;
     }
-    console.log(url);
+ 
     fetch(url, {
         method: "POST",
         body: JSON.stringify({

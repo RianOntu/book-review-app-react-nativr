@@ -5,8 +5,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Icons from 'react-native-vector-icons/FontAwesome';
 import store from './src/redux/store';
+import Login from './src/components/login/Login';
 import Booklist from './src/Booklist/Booklist';
-import {navigate} from './src/NavigationRoot';
+import {Provider} from 'react-redux';
+import {navigate,navigationRef} from './src/NavigationRoot';
 
 const Stack=createStackNavigator();
 
